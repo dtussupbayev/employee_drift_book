@@ -5,6 +5,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        centerTitle: true,
+      ),
+      body: const Column(
+        children: [],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, '/add_employee');
+        },
+        icon: const Icon(Icons.add),
+        label: const Text('Add employee'),
+      ),
+    );
   }
 }
