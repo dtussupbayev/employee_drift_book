@@ -40,7 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (context, index) {
                   final employee = employees[index];
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/edit_employee',
+                        arguments: employee.id,
+                      );
+                    },
                     child: Card(
                       color: Colors.grey.shade300,
                       shape: RoundedRectangleBorder(
