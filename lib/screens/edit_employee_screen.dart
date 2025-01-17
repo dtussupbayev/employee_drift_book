@@ -50,7 +50,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              addEmployee();
+              editEmployee();
             },
             icon: const Icon(Icons.save),
           )
@@ -118,20 +118,21 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
     });
   }
 
-  void addEmployee() {
+  void editEmployee() {
     final entity = EmployeeCompanion(
+      id: drift.Value(widget.id),
       userName: drift.Value(_userNameController.text),
       firstName: drift.Value(_firstNameController.text),
       lastName: drift.Value(_lastNameController.text),
       dateOfBirth: drift.Value(_dateOfBirth!),
     );
 
-    _db.insertEmployee(entity).then(
+    _db.updateEmployee(entity).then(
           (value) => ScaffoldMessenger.of(context).showMaterialBanner(
             MaterialBanner(
               backgroundColor: Colors.deepOrange,
               content: Text(
-                'New employee inserted $value',
+                'Employee updated $value',
                 style: const TextStyle(color: Colors.white),
               ),
               actions: [
@@ -155,6 +156,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
     _userNameController.text = _employeeData.userName;
     _firstNameController.text = _employeeData.firstName;
     _lastNameController.text = _employeeData.lastName;
+    _dateOfBirth = _employeeData.dateOfBirth;
     String dateOfBirthFormatted = DateFormat('dd/MM/yyyy').format(
       _employeeData.dateOfBirth,
     );

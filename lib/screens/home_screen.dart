@@ -45,6 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         '/edit_employee',
                         arguments: employee.id,
+                      ).then(
+                        (value) => setState(() {}),
                       );
                     },
                     child: Card(
